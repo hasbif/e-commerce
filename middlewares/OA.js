@@ -17,6 +17,7 @@ class OA {
 
 
     static authorize(req, res, next) {
+        console.log('aaaauthorizzee', req.params.id)
         if (req.params.id) {
             Cart.findByPk(req.params.id)
                 .then(found => {
@@ -26,7 +27,6 @@ class OA {
                         } else {
                             res.status(400).json({ msg: 'Access Denied' })
                         }
-                        next()
                     } else {
                         res.status(404).json({ msg: 'Product Not Found' })
                     }

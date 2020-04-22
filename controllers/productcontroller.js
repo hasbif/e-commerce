@@ -40,8 +40,6 @@ class ProductCtrl {
 
         const { cart } = req.body
 
-
-
         // let stock
 
         // for (let i in cart) {

@@ -3,7 +3,6 @@ const route = express.Router();
 const controller = require("../controllers/cartcontroller");
 const { authorize, authenticate } = require('../middlewares/OA')
 
-
 route.use(authenticate);
 route.get("/", controller.list);
 route.delete('/', controller.checkout)
