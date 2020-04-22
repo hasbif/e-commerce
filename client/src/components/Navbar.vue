@@ -1,11 +1,15 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar type="light" variant="faded">
       <b-navbar-brand>
         <router-link to="/">Home</router-link>
       </b-navbar-brand>
       <b-navbar-brand>
-        <router-link to="/cart">Cart</router-link>
+        <router-link to="/cart">
+          Cart
+          <b-icon-bag v-if="!cart || cart.length<1" />
+          <b-icon-bag-fill v-else />
+        </router-link>
       </b-navbar-brand>
 
       <!-- Right aligned nav items -->
@@ -22,7 +26,7 @@
           </router-link>
 
           <router-link to="/register">
-            <b-button>Register</b-button>
+            <b-button variant="dark">Register</b-button>
           </router-link>
         </b-navbar-nav>
       </b-navbar-nav>
@@ -40,6 +44,11 @@ export default {
   },
   mounted() {
     this.checkAccess();
+  },
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    }
   },
   methods: {
     logout() {
@@ -63,6 +72,9 @@ export default {
         this.localStorage = false;
       }
     }
+  },
+  watch: {
+    "this.$store.state.cart": function() {}
   }
 };
 </script>

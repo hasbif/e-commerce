@@ -1,8 +1,7 @@
 <template>
-  <div class="home">
+  <div>
     <Navbar />
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <div id="carddiv">
+    <div id="carddiv" style="boder-style:solid;">
       <b-card
         v-for="item in allproduct"
         :key="item.id"
@@ -12,7 +11,7 @@
         img-top
         tag="article"
         style="max-width: 20rem;"
-        class="mb-2 cards"
+        class="cards"
       >
         <b-card-text>{{formatPrice(item.price)}}</b-card-text>
         <router-link :to="`/product/${item.id}`">
@@ -20,7 +19,6 @@
         </router-link>
       </b-card>
     </div>
-    {{allproduct}}
   </div>
 </template>
 
@@ -62,5 +60,7 @@ export default {
 
 .cards {
   margin: 1em;
+  border-style: solid;
+  border-width: 0.3em;
 }
 </style>

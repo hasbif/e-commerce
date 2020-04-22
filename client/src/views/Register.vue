@@ -1,35 +1,39 @@
 <template>
   <div>
     <Navbar />
-    <h2>REGISTER</h2>
-    <form @submit.prevent="register">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          v-model="email"
-        />
-        <small
-          id="emailHelp"
-          class="form-text text-muted"
-        >We'll never share your email with anyone else.</small>
+    <div class="full center-xy-container">
+      <div class="center" style="min-width: 20em">
+        <h2>REGISTER</h2>
+        <form @submit.prevent="register">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              v-model="email"
+            />
+            <small
+              id="emailHelp"
+              class="form-text text-muted"
+            >We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              v-model="password"
+            />
+          </div>
+          <button class="btn btn-primary" type="submit">Register</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Password"
-          v-model="password"
-        />
-      </div>
-      <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
+    </div>
     {{email}} {{password}}
   </div>
 </template>
@@ -67,7 +71,12 @@ export default {
           });
         })
         .catch(err => {
-          console.log("error", err);
+          console.log("error", err.response.msg);
+          this.$store.dispatch("toast", {
+            vm: this,
+            title: "Registration Failed",
+            message: err.response.data.msg
+          });
         });
 
       this.email = null;
@@ -76,3 +85,24 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.center-xy-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas:
+    ". . ."
+    ". center ."
+    ". . .";
+}
+.center-xy-container .center {
+  grid-area: center;
+}
+
+.full {
+  width: 100%;
+  height: 90vh;
+}
+</style>

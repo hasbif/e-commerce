@@ -8,17 +8,24 @@
 export default {
   created() {
     this.$store.dispatch("getProduct");
+    if (localStorage.access_token) {
+      this.$store.dispatch("getCart");
+    }
   }
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+* {
+  border-radius: 0px !important;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Righteous", cursive, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #007bff;
 }
 
 #nav {
