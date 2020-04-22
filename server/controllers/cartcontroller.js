@@ -7,17 +7,18 @@ class CartCtrl {
     // where includes stuff
     static list(req, res) {
 
+
         Customer.findOne({
-            where: { id: req.CustomerId },
+            where: { id: req.customerId },
             include: [{
                 model: Cart,
                 include: Product
             }]
         })
-            .then(customers => {
-                res.status(200).json({ customers })
+            .then(customer => {
+                res.status(200).json({ customer })
             })
-            .then(err => {
+            .catch(err => {
                 res.status(500).json({ msg: 'Internal Server Error', err })
             })
 
@@ -108,7 +109,6 @@ class CartCtrl {
     }
 
     static checkout(req, res) {
-
         Cart.destroy({ where: { CustomerId: req.customerId } })
             .then(data => {
                 res.status(200).json({ msg: 'product deleted' })
