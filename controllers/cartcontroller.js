@@ -1,4 +1,5 @@
 const { Cart, Product, Customer } = require("../models");
+const { Op } = require("sequelize");
 
 class CartCtrl {
 
@@ -24,10 +25,37 @@ class CartCtrl {
 
     static add(req, res) {
         const { ProductId, amount } = req.body
-        Cart.create({ CustomerId: req.customerId, ProductId, amount })
+
+
+        // Cart.create({ CustomerId: req.customerId, ProductId, amount })
+        //     .then(cart => {
+        //         res.status(201).json({ cart })
+        //     }).catch(err => {
+        //         res.status(500).json({ msg: 'Internal Server Error', err })
+        //     })
+
+        Cart.findOne({
+            where: {
+                [Op.and]: [{ CustomerId: req.customerId }, { ProductId: ProductId }]
+            }
+        })
+            .then(cart => {
+                if (cart) {
+                    return Cart.update({
+                        amount: amount + cart.amount
+                    }, { where: { id: cart.id }, returning: true })
+                } else {
+                    return Cart.create({
+                        CustomerId: req.customerId,
+                        ProductId,
+                        amount
+                    })
+                }
+            })
             .then(cart => {
                 res.status(201).json({ cart })
-            }).catch(err => {
+            })
+            .catch(err => {
                 res.status(500).json({ msg: 'Internal Server Error', err })
             })
     }
@@ -48,9 +76,9 @@ class CartCtrl {
 
 
     static edit(req, res) {
-        const { stock } = req.body
+        const { amount } = req.body
 
-        Cart.update({ stock }, { where: { id: req.params.id }, returning: true })
+        Cart.update({ amount }, { where: { id: req.params.id }, returning: true })
             .then(cart => {
                 console.log(cart)
                 res.status(200).json({ cart: cart[1][0] })

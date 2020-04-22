@@ -7,6 +7,7 @@ const { authorize, authenticate } = require('../middlewares/OA')
 route.use(authenticate);
 route.get("/", controller.list);
 route.delete('/', controller.checkout)
+route.post('/', controller.add)
 // route.get("/:id", controller.getbyId);
 route.put("/:id", authorize, controller.edit);
 route.delete("/:id", authorize, controller.delete);
