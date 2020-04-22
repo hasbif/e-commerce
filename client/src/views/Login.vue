@@ -60,6 +60,11 @@ export default {
           console.log("login", res);
           localStorage.setItem("access_token", res.data.access_token);
           this.$router.push("/");
+          this.$store.dispatch("toast", {
+            vm: this,
+            title: "Logged In Successfuly",
+            message: "Welcome"
+          });
         })
         .catch(err => {
           console.log("error", err);

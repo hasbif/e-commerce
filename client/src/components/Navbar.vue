@@ -50,10 +50,10 @@ export default {
       } else {
         this.$router.push("/");
       }
-      this.$bvToast.toast(`Thank You`, {
-        title: "Successully Logged Out",
-        autoHideDelay: 5000,
-        appendToast: true
+      this.$store.dispatch("toast", {
+        vm: this,
+        title: "Successfully Logged Out",
+        message: "See You Soon"
       });
     },
     checkAccess() {

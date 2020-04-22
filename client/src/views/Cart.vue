@@ -3,6 +3,7 @@
     <Navbar />
     <img alt="Vue logo" src="../assets/logo.png" />
     CARTS
+    {{product}}
   </div>
 </template>
 
@@ -13,8 +14,15 @@ import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "Cart",
+  data: function() {
+    return {
+      product: {}
+    };
+  },
   components: {
     Navbar
-  }
+  },
+  mounted() {},
+  methods: {}
 };
 </script>
