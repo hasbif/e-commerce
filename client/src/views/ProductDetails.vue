@@ -3,30 +3,37 @@
     <Navbar />
 
     <div class="full center-xy-container">
-      <div class="center" style="width: 80vw;height: 60vh;border-style:solid;">
-        <b-card :img-src="product.image_url" img-left>
-          <div class="center-xy-container" style="width:100%;height:100%;">
-            <div class="center">
-              <h1>{{product.name}}</h1>
-              <br />
-              <br />
-              <div v-if="product.stock<1">
-                <h3>Price: {{formatPrice(product.price)}}</h3>
-                <h5>Sorry, this item is currently out of stock</h5>
-              </div>
-              <div v-else>
-                <h3>Price: {{formatPrice(product.price)}}</h3>
-                <h5>Stock: {{product.stock}}</h5>
-                <b-button v-b-modal.modal-1 @click="resetModal" variant="primary">Add to Cart</b-button>
-              </div>
+      <!-- <div class="center" style="width: 80vw;height: 60vh;border-style:solid;"> -->
+      <b-card
+        :img-src="product.image_url"
+        img-left
+        img-height="auto"
+        img-width="600em"
+        class="center"
+        style="width:80vw; height:60vh;"
+      >
+        <div class="center-xy-container" style="width:100%;height:100%;">
+          <div class="center">
+            <h1>{{product.name}}</h1>
+            <br />
+            <br />
+            <div v-if="product.stock<1">
+              <h3>Price: {{formatPrice(product.price)}}</h3>
+              <h5>Sorry, this item is currently out of stock</h5>
+            </div>
+            <div v-else>
+              <h3>Price: {{formatPrice(product.price)}}</h3>
+              <h5>Stock: {{product.stock}}</h5>
+              <b-button v-b-modal.modal-1 @click="resetModal" variant="primary">Add to Cart</b-button>
             </div>
           </div>
-        </b-card>
-        <b-modal id="modal-1" :title="product.name" okTitle="Add" @ok="addToCart">
-          <label>Quantity</label>
-          <b-form-spinbutton v-model="amount" min="1" :max="product.stock"></b-form-spinbutton>
-        </b-modal>
-      </div>
+        </div>
+      </b-card>
+      <b-modal id="modal-1" :title="product.name" okTitle="Add" @ok="addToCart">
+        <label>Quantity</label>
+        <b-form-spinbutton v-model="amount" min="1" :max="product.stock"></b-form-spinbutton>
+      </b-modal>
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -36,7 +43,7 @@
 
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
-const url = "http://localhost:3000/";
+const url = "https://ecom-cust.herokuapp.com/";
 export default {
   name: "ProductDetails",
   data: function() {

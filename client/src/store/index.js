@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 Vue.use(Vuex)
 
-const url = "http://localhost:3000/"
+const url = "https://ecom-cust.herokuapp.com/"
 export default new Vuex.Store({
   state: {
     allproduct: [],

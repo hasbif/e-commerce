@@ -99,7 +99,7 @@
 
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
-const url = "http://localhost:3000/";
+const url = "https://ecom-cust.herokuapp.com/";
 
 export default {
   name: "Cart",
@@ -197,6 +197,7 @@ export default {
               .then(res => {
                 console.log(res);
                 this.$store.dispatch("getProduct");
+                this.$store.commit("SETcart", []);
                 this.$router.push("/");
                 this.$store.dispatch("toast", {
                   vm: this,

@@ -37,7 +37,7 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
-const url = "http://localhost:3000/";
+const url = "https://ecom-cust.herokuapp.com/";
 export default {
   name: "Login",
   components: { Navbar },
@@ -59,6 +59,7 @@ export default {
         .then(res => {
           console.log("login", res);
           localStorage.setItem("access_token", res.data.access_token);
+          this.$store.dispatch("getCart");
           this.$router.push("/");
           this.$store.dispatch("toast", {
             vm: this,

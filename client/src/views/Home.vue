@@ -1,23 +1,26 @@
 <template>
   <div>
     <Navbar />
-    <div id="carddiv" style="boder-style:solid;">
-      <b-card
-        v-for="item in allproduct"
-        :key="item.id"
-        :title="item.name"
-        :img-src="item.image_url"
-        img-alt="Image"
-        img-top
-        tag="article"
-        style="max-width: 20rem;"
-        class="cards"
-      >
-        <b-card-text>{{formatPrice(item.price)}}</b-card-text>
-        <router-link :to="`/product/${item.id}`">
-          <b-button variant="primary">Details</b-button>
-        </router-link>
-      </b-card>
+    <div style="padding-top:5vh">
+      <div id="carddiv" style="boder-style:solid;">
+        <b-card
+          v-for="item in allproduct"
+          :key="item.id"
+          :title="item.name"
+          :img-src="item.image_url"
+          img-alt="Image"
+          img-top
+          img-height="250px"
+          tag="article"
+          style="max-width: 20rem;"
+          class="cards"
+        >
+          <b-card-text>{{formatPrice(item.price)}}</b-card-text>
+          <router-link :to="`/product/${item.id}`">
+            <b-button variant="primary">Details</b-button>
+          </router-link>
+        </b-card>
+      </div>
     </div>
   </div>
 </template>

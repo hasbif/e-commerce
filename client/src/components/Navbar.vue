@@ -6,7 +6,6 @@
       </b-navbar-brand>
       <b-navbar-brand>
         <router-link to="/cart">
-          Cart
           <b-icon-bag v-if="!cart || cart.length<1" />
           <b-icon-bag-fill v-else />
         </router-link>
@@ -54,6 +53,7 @@ export default {
     logout() {
       localStorage.removeItem("access_token");
       console.log("asdd", this.$route.name);
+      this.$store.commit("SETcart", []);
       this.checkAccess();
       if (this.$route.name == "Home") {
       } else {
