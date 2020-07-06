@@ -1,5 +1,13 @@
 # e-commerce
 
+A simple e-commerce mock site
+
+
+# Client
+
+Front end of an E-commerce using Vue.js
+Client Deployment: https://ih-commerce.web.app/
+
 
 # Server
 
